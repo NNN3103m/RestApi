@@ -1,7 +1,7 @@
 package com.example.demo.web
 
-import com.example.demo.bussines.ICUstomerBussines
-import com.example.demo.exceptions.BussinessException
+import com.example.demo.bussines.ICustomerBusiness
+import com.example.demo.exceptions.BusinessException
 import com.example.demo.exceptions.NotFoundException
 import com.example.demo.model.Customer
 import com.example.demo.utils.Constants
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping(Constants.URL_BASE_CUSTOMERS)
 class CustomerRestController {
     @Autowired
-    val customerBusiness: ICUstomerBussines? = null
+    val customerBusiness: ICustomerBusiness? = null
 
     @GetMapping("")
     fun list(): ResponseEntity<List<Customer>> {
@@ -31,7 +31,7 @@ class CustomerRestController {
     fun loadById(@PathVariable("id") idCustomer:Long):ResponseEntity<Customer>{
         return try {
             ResponseEntity(customerBusiness!!.getCustomerById(idCustomer), HttpStatus.OK)
-        }catch (e: BussinessException){
+        }catch (e: BusinessException){
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         }catch (e: NotFoundException){
             ResponseEntity(HttpStatus.NOT_FOUND)
@@ -41,7 +41,7 @@ class CustomerRestController {
     fun loadByNombre(@PathVariable("nombre") nombreCustomer:String):ResponseEntity<Customer>{
         return try {
             ResponseEntity(customerBusiness!!.getCustomerByNombre(nombreCustomer), HttpStatus.OK)
-        }catch (e:BussinessException){
+        }catch (e:BusinessException){
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         }catch (e:NotFoundException){
             ResponseEntity(HttpStatus.NOT_FOUND)
@@ -54,7 +54,7 @@ class CustomerRestController {
             val responseHeader = HttpHeaders()
             responseHeader.set("location",Constants.URL_BASE_CUSTOMERS+"/"+customer.customerId)
             ResponseEntity(customer, responseHeader, HttpStatus.CREATED)
-        }catch (e:BussinessException){
+        }catch (e:BusinessException){
             //return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
             val apiError = RestApiError(HttpStatus.INTERNAL_SERVER_ERROR,
                 "Informacion Enviada no es Valida",
@@ -62,11 +62,13 @@ class CustomerRestController {
             ResponseEntity(apiError,HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
+
+    //Para agregar varios TEST
     @PostMapping("/addCustomers")
     fun insert(@RequestBody customers:List<Customer>):ResponseEntity<Any>{
         return try {
             ResponseEntity(customerBusiness!!.saveCustomers(customers),HttpStatus.CREATED)
-        }catch (e:BussinessException){
+        }catch (e:BusinessException){
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
@@ -75,7 +77,7 @@ class CustomerRestController {
         return try {
             customerBusiness!!.updateCustomer(customer)
             ResponseEntity(customer,HttpStatus.OK)
-        }catch (e:BussinessException){
+        }catch (e:BusinessException){
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         }catch (e:NotFoundException){
             ResponseEntity(HttpStatus.NOT_FOUND)
@@ -86,7 +88,7 @@ class CustomerRestController {
         return try {
             customerBusiness!!.removeCustomer(idCustomer)
             ResponseEntity(HttpStatus.OK)
-        } catch (e: BussinessException) {
+        } catch (e: BusinessException) {
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         } catch (e: NotFoundException) {
             ResponseEntity(HttpStatus.NOT_FOUND)

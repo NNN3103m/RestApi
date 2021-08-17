@@ -2,4 +2,4 @@ package com.example.demo.exceptions
 
 import java.lang.Exception
 
-class BussinessException(message:String?):Exception(message)
+class BusinessException(message:String?):Exception(message)
