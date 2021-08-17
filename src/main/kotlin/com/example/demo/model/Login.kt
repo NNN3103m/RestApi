@@ -10,3 +10,4 @@ package com.example.demo.model
 //        var userLoggedIn:Boolean = false
 //    }
 
+
