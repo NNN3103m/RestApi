@@ -61,19 +61,19 @@ class CustomerBusiness:ICustomerBusiness {
     }
 
     @Throws(BusinessException::class,NotFoundException::class)
-    override fun removeCustomer(idCUstomer: Long) {
+    override fun removeCustomer(idCustomer: Long) {
         val opt:Optional<Customer>
         try {
-            opt = customerRepository!!.findById(idCUstomer)
+            opt = customerRepository!!.findById(idCustomer)
         }catch (e:Exception){
             throw BusinessException(e.message)
         }
         if (!opt.isPresent){
-            throw NotFoundException("No se encontro la persona $idCUstomer")
+            throw NotFoundException("No se encontro la persona $idCustomer")
         }
         else{
             try {
-                customerRepository!!.deleteById(idCUstomer)
+                customerRepository!!.deleteById(idCustomer)
             }catch (e:Exception){
                 throw BusinessException(e.message)
             }
