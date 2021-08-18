@@ -3,7 +3,6 @@ package com.example.demo.bussines
 import com.example.demo.dao.ShopRepository
 import com.example.demo.exceptions.BusinessException
 import com.example.demo.exceptions.NotFoundException
-import com.example.demo.model.Item
 import com.example.demo.model.Shop
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -112,6 +111,4 @@ class ShopBusiness: iShopBusiness {
         }
         return opt.get()
     }
-
-
 }
