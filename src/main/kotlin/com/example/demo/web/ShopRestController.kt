@@ -3,6 +3,7 @@ package com.example.demo.web
 import com.example.demo.bussines.iShopBusiness
 import com.example.demo.exceptions.BusinessException
 import com.example.demo.exceptions.NotFoundException
+import com.example.demo.model.Address
 import com.example.demo.model.Shop
 import com.example.demo.utils.Constants
 import com.example.demo.utils.RestApiError
@@ -50,6 +51,29 @@ class ShopRestController {
         }
     }
 
+    @GetMapping("/city/{city}")
+    fun loadByCity(@PathVariable("city") cityShop:String): ResponseEntity<Shop> {
+        return try {
+            ResponseEntity(shopBusiness!!.getShopByCity(cityShop), HttpStatus.OK)
+        }catch (e: BusinessException){
+            ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
+        }catch (e: NotFoundException){
+            ResponseEntity(HttpStatus.NOT_FOUND)
+        }
+    }
+
+    @GetMapping("/localePhoneNumber/{localePhoneNumber}")
+    fun loadByLocalePhoneNumber(@PathVariable("localePhoneNumber") localePhoneNumberShop:Int): ResponseEntity<Shop> {
+        return try {
+            ResponseEntity(shopBusiness!!.getShopByLocalePhoneNumber(localePhoneNumberShop), HttpStatus.OK)
+        }catch (e: BusinessException){
+            ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
+        }catch (e: NotFoundException){
+            ResponseEntity(HttpStatus.NOT_FOUND)
+        }
+    }
+
+
     @PostMapping("/addShop")
     fun insert(@RequestBody shop: Shop): ResponseEntity<Any> {
         return try {
@@ -68,7 +92,7 @@ class ShopRestController {
     }
 
     //Para agregar varios TEST
-    @PostMapping("/addShos")
+    @PostMapping("/addShops")
     fun insert(@RequestBody shops:List<Shop>): ResponseEntity<Any> {
         return try {
             ResponseEntity(shopBusiness!!.saveShops(shops), HttpStatus.CREATED)
