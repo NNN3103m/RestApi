@@ -3,6 +3,7 @@ package com.example.demo.bussines
 import com.example.demo.dao.ShopRepository
 import com.example.demo.exceptions.BusinessException
 import com.example.demo.exceptions.NotFoundException
+import com.example.demo.model.Address
 import com.example.demo.model.Shop
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -34,6 +35,34 @@ class ShopBusiness: iShopBusiness {
         }
         if (!opt.isPresent){
             throw NotFoundException("No se encontro el articulo con referencia $idShop")
+        }
+        return opt.get()
+    }
+
+    @Throws(BusinessException::class,NotFoundException::class)
+    override fun getShopByCity(cityShop: String): Shop {
+        val opt:Optional<Shop>
+        try {
+            opt = shopRepository!!.findByCity(cityShop)
+        }catch (e:Exception){
+            throw BusinessException(e.message)
+        }
+        if (!opt.isPresent){
+            throw NotFoundException("No se encontro la persona $cityShop")
+        }
+        return opt.get()
+    }
+
+    @Throws(BusinessException::class,NotFoundException::class)
+    override fun getShopByLocalePhoneNumber(localePhoneNumberShop: Int): Shop {
+        val opt:Optional<Shop>
+        try {
+            opt = shopRepository!!.findByLocalePhoneNumber(localePhoneNumberShop)
+        }catch (e:Exception){
+            throw BusinessException(e.message)
+        }
+        if (!opt.isPresent){
+            throw NotFoundException("No se encontro la persona $localePhoneNumberShop")
         }
         return opt.get()
     }
