@@ -92,6 +92,7 @@ class ShopBusiness: iShopBusiness {
         return opt.get()
     }
 
+    @Throws(BusinessException::class,NotFoundException::class)
     override fun updateShop(shop: Shop): Shop {
         val opt:Optional<Shop>
         try {
