@@ -28,18 +28,18 @@ class OrderRestController {
         }
     }
 
-    @GetMapping("/orderid/{orderid}")
-    fun loadById(@PathVariable("orderid") orderId: Long): ResponseEntity<Order> {
+    @GetMapping("/id/{id}")
+    fun loadById(@PathVariable("id") idOrder: Long): ResponseEntity<Order> {
         return try {
-            ResponseEntity(orderBusiness!!.getOrderByOrderId(orderId), HttpStatus.OK)
+            ResponseEntity(orderBusiness!!.getOrderByOrderId(idOrder), HttpStatus.OK)
         }catch (e: BusinessException){
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         }catch (e: NotFoundException){
             ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
-    @GetMapping("/shopid/{shopid}")
-    fun loadByShopId(@PathVariable("shopid") shopId:Int): ResponseEntity<Order> {
+    @GetMapping("/shopId/{shopId}")
+    fun loadByShopId(@PathVariable("shopId") shopId:Int): ResponseEntity<Order> {
         return try {
             ResponseEntity(orderBusiness!!.getOrderByShopId(shopId), HttpStatus.OK)
         }catch (e: BusinessException){
@@ -48,8 +48,8 @@ class OrderRestController {
             ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
-    @GetMapping("/customerdni/{customerdni}")
-    fun loadByOrderId(@PathVariable("customerdni") customerDni:Int): ResponseEntity<Order> {
+    @GetMapping("/customerDni/{customerDni}")
+    fun loadByCustomerDni(@PathVariable("customerDni") customerDni:String): ResponseEntity<Order> {
         return try {
             ResponseEntity(orderBusiness!!.getOrderByCustomerDni(customerDni), HttpStatus.OK)
         }catch (e: BusinessException){
@@ -58,8 +58,8 @@ class OrderRestController {
             ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
-    @GetMapping("/ordername/{ordername}")
-    fun loadByNombre(@PathVariable("ordername") orderName:String): ResponseEntity<Order> {
+    @GetMapping("/orderName/{orderName}")
+    fun loadByOrderName(@PathVariable("orderName") orderName:String): ResponseEntity<Order> {
         return try {
             ResponseEntity(orderBusiness!!.getOrderByOrderName(orderName), HttpStatus.OK)
         }catch (e: BusinessException){
@@ -94,6 +94,7 @@ class OrderRestController {
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
+
     @PutMapping("")
     fun update(@RequestBody order: Order): ResponseEntity<Any> {
         return try {

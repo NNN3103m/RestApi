@@ -12,7 +12,7 @@ import javax.persistence.Table
                      val itemId:Int,
                      val itemAmount:Int,
                      val shopId:Int,
-                     val customerDni:Int,
+                     val customerDni:String="",
                      val orderStatusName:String="",
                      val orderName:String="",
                      val orderTotalTopay:Int,

@@ -40,28 +40,28 @@ class OrderBusiness:iOrderBusiness {
     }
 
     @Throws(BusinessException::class, NotFoundException::class)
-    override fun getOrderByCustomerDni(customerDni: Int): Order {
+    override fun getOrderByCustomerDni(customerDniOrder: String): Order {
         val opt: Optional<Order>
         try {
-            opt = orderRepository!!.findByCustomerDni(customerDni)
+            opt = orderRepository!!.findByCustomerDni(customerDniOrder)
         }catch (e:Exception){
             throw BusinessException(e.message)
         }
         if (!opt.isPresent){
-            throw NotFoundException("No se encontro la ordern con referencia $customerDni")
+            throw NotFoundException("No se encontro la ordern con referencia $customerDniOrder")
         }
         return opt.get()
     }
 
-    override fun getOrderByShopId(shopId: Int): Order {
+    override fun getOrderByShopId(shopIdOrder: Int): Order {
         val opt: Optional<Order>
         try {
-            opt = orderRepository!!.findByShopId(shopId)
+            opt = orderRepository!!.findByShopId(shopIdOrder)
         }catch (e:Exception){
             throw BusinessException(e.message)
         }
         if (!opt.isPresent){
-            throw NotFoundException("No se encontro la orden con referencia $shopId")
+            throw NotFoundException("No se encontro la orden con referencia $shopIdOrder")
         }
         return opt.get()
     }
@@ -107,15 +107,15 @@ class OrderBusiness:iOrderBusiness {
     }
 
     @Throws(BusinessException::class,NotFoundException::class)
-    override fun getOrderByOrderName(orderName: String): Order {
+    override fun getOrderByOrderName(orderNameOrder: String): Order {
         val opt:Optional<Order>
         try {
-            opt = orderRepository!!.findByOrderName(orderName)
+            opt = orderRepository!!.findByOrderName(orderNameOrder)
         }catch (e:Exception){
             throw BusinessException(e.message)
         }
         if (!opt.isPresent){
-            throw NotFoundException("No se encontro la persona $orderName")
+            throw NotFoundException("No se encontro la persona $orderNameOrder")
         }
         return opt.get()
     }
