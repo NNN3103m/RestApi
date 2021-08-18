@@ -13,6 +13,7 @@ class Constants {
         const val URL_BASE_CREDITCARDS  = "$URL_BASE/creditcards"
         const val URL_BASE_SELLERS      = "$URL_BASE/sellers"
         const val URL_BASE_ORDERS       = "$URL_BASE/orders"
+        const val URL_BASE_TRANSACTIONS = "$URL_BASE/transactions"
 
     }
 }
