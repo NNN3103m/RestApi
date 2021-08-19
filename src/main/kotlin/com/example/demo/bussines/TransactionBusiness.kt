@@ -7,6 +7,7 @@ import com.example.demo.model.Transaction
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.lang.Exception
+import java.math.BigInteger
 import java.util.*
 
 @Service
@@ -39,7 +40,7 @@ class TransactionBusiness: iTransactionBusiness {
     }
 
     @Throws(BusinessException::class, NotFoundException::class)
-    override fun getTransactionByCustomerDni(customerDni: Int): Transaction {
+    override fun getTransactionByCustomerDni(customerDni: String): Transaction {
         val opt: Optional<Transaction>
         try {
             opt = transactionRepository!!.findByCustomerDni(customerDni)
@@ -53,15 +54,15 @@ class TransactionBusiness: iTransactionBusiness {
     }
 
     @Throws(BusinessException::class, NotFoundException::class)
-    override fun getTransactionByCustomerMobile(customerMoile: Int): Transaction {
+    override fun getTransactionByCustomerMobile(customerMobile: Int): Transaction {
         val opt: Optional<Transaction>
         try {
-            opt = transactionRepository!!.findByCustomerMobile(customerMoile)
+            opt = transactionRepository!!.findByCustomerMobile(customerMobile)
         }catch (e:Exception){
             throw BusinessException(e.message)
         }
         if (!opt.isPresent){
-            throw NotFoundException("No se encontro el articulo con referencia $customerMoile")
+            throw NotFoundException("No se encontro el articulo con referencia $customerMobile")
         }
         return opt.get()
     }

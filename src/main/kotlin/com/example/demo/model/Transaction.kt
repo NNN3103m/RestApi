@@ -1,5 +1,6 @@
 package com.example.demo.model
 
+import java.math.BigInteger
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.Id
@@ -8,10 +9,10 @@ import javax.persistence.Table
 @Entity
 @Table(name = "transaction")
 data class Transaction(val transactionId:Long,
-                       val customerDni:Int,
+                       val customerDni:String="",
                        val customerMobile:Int,
                        val paymentMethodId:Int,
-                       val creditcardNumber:Int,
+                       val creditcardNumber:BigInteger,
                        val shopName:String="",
                        val shopId:Int,
                        val shopLocalePhoneNumber:Int,

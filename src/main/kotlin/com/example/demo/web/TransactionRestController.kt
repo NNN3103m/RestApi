@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
+import java.math.BigInteger
 
 @RestController
 @RequestMapping(Constants.URL_BASE_TRANSACTIONS)
@@ -38,8 +39,8 @@ class TransactionRestController {
             ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
-    @GetMapping("/customerdni/{customerdni}")
-    fun loadByCustomerDni(@PathVariable("customerdni") customerDni:Int): ResponseEntity<Transaction> {
+    @GetMapping("/customerDni/{customerDni}")
+    fun loadByCustomerDni(@PathVariable("customerDni") customerDni:String): ResponseEntity<Transaction> {
         return try {
             ResponseEntity(transactionBusiness!!.getTransactionByCustomerDni(customerDni), HttpStatus.OK)
         }catch (e: BusinessException){
@@ -49,8 +50,8 @@ class TransactionRestController {
         }
     }
 
-    @GetMapping("/customermobile/{customermobile}")
-    fun loadByCustomerMobile(@PathVariable("customermobile") customerMobile:Int): ResponseEntity<Transaction> {
+    @GetMapping("/customerMobile/{customerMobile}")
+    fun loadByCustomerMobile(@PathVariable("customerMobile") customerMobile:Int): ResponseEntity<Transaction> {
         return try {
             ResponseEntity(transactionBusiness!!.getTransactionByCustomerMobile(customerMobile), HttpStatus.OK)
         }catch (e: BusinessException){
