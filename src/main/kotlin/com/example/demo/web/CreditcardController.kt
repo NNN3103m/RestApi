@@ -100,9 +100,9 @@ class CreditcardController {
         }
     }
     @DeleteMapping("/delete/{id}")
-    fun delete(@PathVariable("id") idShop: Long): ResponseEntity<Any> {
+    fun delete(@PathVariable("id") idCreditcard: Long): ResponseEntity<Any> {
         return try {
-            creditcardBusiness!!.removeCreditcard(idShop)
+            creditcardBusiness!!.removeCreditcard(idCreditcard)
             ResponseEntity(HttpStatus.OK)
         } catch (e: BusinessException) {
             ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
