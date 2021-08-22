@@ -6,4 +6,5 @@ import java.util.*
 
 interface CustomerRepository: JpaRepository<Customer,Long> {
     fun findByNombre(nombre:String): Optional<Customer>
+    fun findByEmail(email:String): Customer?
 }
