@@ -4,11 +4,10 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "creditcard")
-    data class Creditcard(val creditcardNumber:Int,
-                          val customerDni:Int,
+    data class Creditcard(val creditcardNumber:String = "",
                           val cvv:Int,
-                          val expiration_date:String="",
-                          val nametag:String ="")
+                          val expiration_date:String = "",
+                          val nametag:String = "")
     {
      @Id
      @GeneratedValue
