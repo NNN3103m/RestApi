@@ -5,15 +5,14 @@ import javax.persistence.*
 
 @Entity
 @Table(name="addresses")
-    data class Address(val description:String="",
-                       val addressId:Long = 0,
+    data class Address(val addressId:Long = 0,
                        val country:String="",
                        val department:String="",
                        val city:String="",
-                       val postalCode:Int=0,
+                       val postalCode:Int,
                        val streetName:String="",
-                       val houseNumber:Int,
-                       val customerDni:String="" )
+                       val houseNumber:Int
+                       )
     {
         @Id
         @GeneratedValue
