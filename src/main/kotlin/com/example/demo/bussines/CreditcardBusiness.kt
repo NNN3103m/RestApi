@@ -52,19 +52,19 @@ class CreditcardBusiness: iCreditcardBusiness {
         return opt.get()
     }
 
-    @Throws(BusinessException::class,NotFoundException::class)
-    override fun getCreditcardByCustomerDni(customerDni: Int): Creditcard {
-        val opt: Optional<Creditcard>
-        try {
-            opt = creditcardRepository!!.findByCustomerDni(customerDni)
-        }catch (e:Exception){
-            throw BusinessException(e.message)
-        }
-        if (!opt.isPresent){
-            throw NotFoundException("No se encontro el articulo con referencia $customerDni")
-        }
-        return opt.get()
-    }
+//    @Throws(BusinessException::class,NotFoundException::class)
+//    override fun getCreditcardByCustomerDni(customerDni: Int): Creditcard {
+//        val opt: Optional<Creditcard>
+//        try {
+//            opt = creditcardRepository!!.findByCustomerDni(customerDni)
+//        }catch (e:Exception){
+//            throw BusinessException(e.message)
+//        }
+//        if (!opt.isPresent){
+//            throw NotFoundException("No se encontro el articulo con referencia $customerDni")
+//        }
+//        return opt.get()
+//    }
 
     @Throws(BusinessException::class,NotFoundException::class)
     override fun saveCreditcard(creditcard: Creditcard): Creditcard {

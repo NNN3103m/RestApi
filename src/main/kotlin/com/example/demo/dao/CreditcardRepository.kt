@@ -6,6 +6,6 @@ import java.util.*
 
 interface CreditcardRepository: JpaRepository<Creditcard, Long> {
     fun findByNametag(nametag:String): Optional<Creditcard>
-    fun findByCustomerDni(customerDni: Int): Optional<Creditcard>
+//    fun findByCustomerDni(customerDni: Int): Optional<Creditcard>
 
 }

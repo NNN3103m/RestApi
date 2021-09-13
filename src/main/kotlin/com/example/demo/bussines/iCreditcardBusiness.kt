@@ -8,7 +8,7 @@ interface iCreditcardBusiness {
     fun getCreditcards():List<Creditcard>
     fun getCreditcardById(idCreditcard: Long): Creditcard
     fun getCreditcardByNametag(nametag: String): Creditcard
-    fun getCreditcardByCustomerDni(customerDni: Int):Creditcard
+//    fun getCreditcardByCustomerDni(customerDni: Int):Creditcard
     //Saves
     fun saveCreditcard(creditcard: Creditcard): Creditcard
     fun saveCreditcards(creditcard: List<Creditcard>):List<Creditcard>

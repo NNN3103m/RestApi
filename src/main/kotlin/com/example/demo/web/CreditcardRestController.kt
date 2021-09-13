@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping(Constants.URL_BASE_CREDITCARDS)
-class CreditcardController {
+class CreditcardRestController {
 
     @Autowired
     val creditcardBusiness:iCreditcardBusiness?=null
@@ -50,16 +50,16 @@ class CreditcardController {
         }
     }
 
-    @GetMapping("/customerdni/{customerdni}")
-    fun loadByCustomerDni(@PathVariable("customerdni") customerDni:Int): ResponseEntity<Creditcard> {
-        return try {
-            ResponseEntity(creditcardBusiness!!.getCreditcardByCustomerDni(customerDni), HttpStatus.OK)
-        }catch (e: BusinessException){
-            ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
-        }catch (e: NotFoundException){
-            ResponseEntity(HttpStatus.NOT_FOUND)
-        }
-    }
+//    @GetMapping("/customerdni/{customerdni}")
+//    fun loadByCustomerDni(@PathVariable("customerdni") customerDni:Int): ResponseEntity<Creditcard> {
+//        return try {
+//            ResponseEntity(creditcardBusiness!!.getCreditcardByCustomerDni(customerDni), HttpStatus.OK)
+//        }catch (e: BusinessException){
+//            ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR)
+//        }catch (e: NotFoundException){
+//            ResponseEntity(HttpStatus.NOT_FOUND)
+//        }
+//    }
 
     @PostMapping("/addCreditcard")
     fun insert(@RequestBody creditcard: Creditcard): ResponseEntity<Any> {
